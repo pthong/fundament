@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #EDCBA9;
+    }
+body{
+    background-color:#123456;
+
+}
+    
+main {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+section {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+article {
+    margin-left: auto;
+    margin-right: auto; 
+    width: 100%;
+    text-align: center;
+    
+}
+
+h2{
+    font-size: 2500%
+}
