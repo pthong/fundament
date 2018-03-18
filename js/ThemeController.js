@@ -1,12 +1,17 @@
 class ThemeController{
     constructor(){
-        document.getElementById("test").addEventListener("click", (e) => this.testClick());
-        document.getElementById("save").addEventListener("click", (e) => this.saveClick());
-        document.getElementById("show").addEventListener("click", (e) => this.showClick());
-
+		if(document.getElementById("test"))
+			document.getElementById("test").addEventListener("click", (e) => this.testClick());
+		if(document.getElementById("save"))
+			document.getElementById("save").addEventListener("click", (e) => this.saveClick());
+		if(document.getElementById("show"))
+			document.getElementById("show").addEventListener("click", (e) => this.showClick());
+		
 
         this.theme = new Theme();
         this.checkThemePreference();
+		this.logAvailableThemes();
+
 
     }
 
@@ -16,10 +21,16 @@ class ThemeController{
             this.setThemeByNameFromLocalStorage(localStorage.themePreference);
         }else{
             console.log("there is no");
+			let ob = new Theme("original blue", "#123456", "#EDCBA9");
+			ob.applyTheme(); ob.addToLocalStorage();
+			let em = new Theme("early morning", "#4e3622", "#e0ad7d");
+			em.addToLocalStorage();
+			this.setThemePreference("original blue");
+
+			
+
+
         }
-
-
-
     }
 
     testClick(){
@@ -52,10 +63,21 @@ class ThemeController{
        this.setThemePreference(this.theme.name);
     }
 
-    setThemePreference(pref){
-        localStorage.setItem("themePreference", pref);
+    setThemePreference(themename){
+        localStorage.setItem("themePreference", themename);
     }
 
+	logAvailableThemes(){
+	
+			for(var key in localStorage){
+		
+			if(key[0] == "t" && key[1] == "h" && key[2] == "e"){
+				localStorage.getItem(key).name;
+				console.log(key.slice(6));
+			}
+		}
+
+	}
     
 
 }
