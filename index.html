@@ -1,25 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-        <title>timer</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <script src="js/StartApp.js"></script>
-       <script src="js/Theme.js"></script>
-        <script src="js/ThemeController.js"></script>
+<html>
+<head>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<style type="text/css">
+        html, body, video {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: black;
+            z-index: 1;
+            position: relative;
+        }
 
-  </head>
-  <body>
-	<main>
+        video:-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+        }
 
-   
-	<section>
-        <article>
-            <h2 id="time"> 0:00 </h2>
-            <p id="debug"></p>
-        <article>
-	</section>
-	
-	</main>
-   </body>  
+        div#welcomeBtn {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px dotted Red;
+            right: 0;
+            top: 50%;
+            margin-top: -150px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            z-index: 2;
+        }
+
+    </style>
+</head>
+<body>
+Click to begin!
+
+<script type="text/javascript">
+    console.log('hoi');
+    
+    var video = document.createElement('video');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('id', 'video');
+    video.style.width = '100%';
+    video.style.width = '100%';
+
+    /* Setting up the constraint */
+    var facingMode = "environment"; // Can be 'user' or 'environment' to access back or front camera (NEAT!)
+    var constraints = {
+        audio: false,
+        video: {
+            facingMode: facingMode
+        }
+    };
+
+    document.body.appendChild(video);
+ navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+            video.srcObject = stream;
+    document.getElementById('video').addEventListener('click', function() {
+        document.body.webkitRequestFullscreen();
+
+        document.getElementById('welcomeBtn').innerHTML = '';
+
+        /* Stream it to video element */
+       
+            document.getElementById('welcomeBtn').style.display = 'block';
+            document.getElementById('welcomeBtn').innerHTML = 'Go do stuff!';
+
+            document.getElementById('video').removeEventListener('click', lol);
+
+            document.getElementById('welcomeBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                document.getElementById('welcomeBtn').innerHTML = 'test';
+            });
+        });
+    });
+</script>
+</body>
 </html>
