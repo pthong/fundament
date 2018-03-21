@@ -54,11 +54,12 @@ class ThemeController{
     }
 
     setThemeByNameFromLocalStorage(themeName){
+        console.log("settheme");
        let jsObj = JSON.parse(localStorage.getItem("theme_" + themeName));
        this.theme.name  = jsObj.name;
        this.theme.backgroundColor = jsObj.backgroundColor;
        this.theme.textColor = jsObj.textColor;
-       
+
        this.theme.applyTheme();
        this.setThemePreference(this.theme.name);
     }
